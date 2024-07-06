@@ -5,7 +5,8 @@ import "./globals.css";
 import { Shrikhand } from "next/font/google";
 import { Flex, Layout as AntdLayout, Menu } from "antd";
 const { Header, Footer, Content } = AntdLayout;
-import NextBreadCrum from "../components/BreadCrumb";
+import NextBreadCrum from "@/components/BreadCrumb";
+import UserAvatar from "@/components/Avatar";
 import styled from "styled-components";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 
@@ -46,13 +47,7 @@ const RootLayout = ({ children }: React.PropsWithChildren) => (
         <Layout>
           <StyledHeader>
             <StyledDiv className={shrikhand.className}>Testify</StyledDiv>
-            <Menu
-              theme="dark"
-              mode="horizontal"
-              defaultSelectedKeys={["1"]}
-              items={items}
-              style={{ flex: 1, justifyContent: "flex-end", minWidth: 0 }}
-            />
+            <UserAvatar />
           </StyledHeader>
           <Content style={{ padding: "0 36px" }}>
             <NextBreadCrum />

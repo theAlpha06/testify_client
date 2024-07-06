@@ -3,7 +3,7 @@
 import React from "react";
 import type { FormProps } from "antd";
 import { Button, Checkbox, Form, Input } from "antd";
-import useNotify from "../../hooks/useNotification";
+import useNotify from "@/hooks/useNotification";
 
 interface FieldType {
   username: string;
