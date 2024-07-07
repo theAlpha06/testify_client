@@ -3,17 +3,12 @@
 import React from "react";
 import "./globals.css";
 import { Shrikhand } from "next/font/google";
-import { Flex, Layout as AntdLayout, Menu } from "antd";
+import { Flex, Layout as AntdLayout } from "antd";
 const { Header, Footer, Content } = AntdLayout;
 import NextBreadCrum from "@/components/BreadCrumb";
 import UserAvatar from "@/components/Avatar";
 import styled from "styled-components";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
-
-const items = new Array(3).fill(null).map((_, index) => ({
-  key: index + 1,
-  label: `nav ${index + 1}`,
-}));
 
 const Layout = styled(AntdLayout)`
   height: 100vh;
