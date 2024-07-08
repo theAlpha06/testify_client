@@ -36,8 +36,8 @@ const SignIn: React.FC = (): JSX.Element => {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/auth/login`,
         {
-          username: "Biswadeep2",
-          password: "biswa123123",
+          username: values.username,
+          password: values.password,
         }
       );
       const user = getName(response?.data?.access_token);
