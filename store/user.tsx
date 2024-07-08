@@ -1,15 +1,16 @@
-import { create } from 'zustand';
+import create from 'zustand';
+import { createJSONStorage, persist } from 'zustand/middleware';
 
-export interface UserState {
-  username: string;
-  login: (name: string) => void;
-  logout: () => void;
-}
-
-const useStore = create<UserState>((set) => ({
-  username: "",
-  login: (name: string) => set({ username: name }),
-  logout: () => set({ username: "" }),
-}));
+const useStore = create<any>(persist(
+  (set) => ({
+    username: '',
+    login: (name: string) => set({ username: name }),
+    logout: () => set({ username: '' }),
+  }),
+  {
+    name: 'user-storage',
+    storage: createJSONStorage(() => localStorage), 
+  }
+));
 
 export default useStore;
