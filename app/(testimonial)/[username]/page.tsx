@@ -1,7 +1,7 @@
 "use client";
 import { StarFilled } from "@ant-design/icons";
 import styled from "styled-components";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import type { FormProps } from "antd";
 import useNotify from "@/hooks/useNotification";
 import { Button, Flex, Form, Input } from "antd";
@@ -27,7 +27,7 @@ const rating = (
 const Testimonial: React.FC = (): JSX.Element => {
   const { TextArea } = Input;
   const params = useParams();
-
+  const [form] = Form.useForm();
   const { notify, contextHolder } = useNotify();
 
   const developerUsername = params?.username;
@@ -97,6 +97,11 @@ const Testimonial: React.FC = (): JSX.Element => {
         }
       );
       handleNotify("topRight");
+      form.setFieldsValue({
+        username: "",
+        email: "",
+        feedback: "",
+      });
     } catch (error) {
       console.error("Axios Error:", error);
     }
@@ -122,6 +127,7 @@ const Testimonial: React.FC = (): JSX.Element => {
       {developerUsername ? (
         <FormContainer
           name="basic"
+          form={form}
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 16 }}
           layout="vertical"
