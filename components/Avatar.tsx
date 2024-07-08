@@ -4,6 +4,7 @@ import { Space } from 'antd';
 import { LogoutOutlined, LoginOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 const AvatarContainer = styled.div`
   display: flex;
@@ -50,7 +51,7 @@ const UserAvatar: React.FC = (): JSX.Element => {
       {username ? (
         <AvatarContainer>
           <Space size={16} wrap>
-            <span style={{ color: '#ffffff' }}>Hi! {username}</span>
+            <Link href={"/dashboard"} style={{ color: '#ffffff' }}>Hi! {username}</Link>
             <StyledButton onClick={handleLogout}>
               <LogoutOutlined className="icon" />
               Logout
