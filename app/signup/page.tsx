@@ -30,12 +30,11 @@ const SignUp: React.FC = (): JSX.Element => {
 
   const onFinish: FormProps<FieldType>["onFinish"] = async (values) => {
     try {
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/auth/signup`, {
+      await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/auth/signup`, {
         username: values.username,
         email: values.email,
         password: values.password,
       });
-      console.log("Response:", response.data);
       form.setFieldsValue({
         username: "",
         email: "",
