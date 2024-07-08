@@ -78,7 +78,7 @@ const Dashboard: React.FC = (): JSX.Element => {
     initClipboard();
   }, []);
 
-  const iframeCode = `<iframe height="100%" frameBorder="0" scrolling="no" src="${process.env.NEXT_TESTIMONIAL_BASE_URL}/testing?theme=${theme}" width="100%"></iframe>`;
+  const iframeCode = `<iframe height="100%" frameBorder="0" scrolling="no" src="${process.env.NEXT_PUBLIC_TESTIMONIAL_URL}/testing?theme=${theme}" width="100%"></iframe>`;
 
   return (
     <DashboardContainer>
