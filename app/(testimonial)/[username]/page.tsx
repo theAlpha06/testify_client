@@ -112,14 +112,14 @@ const Testimonial: React.FC = (): JSX.Element => {
       {contextHolder}
       <Container>
         <section>
-          <h1>Testify Our Work</h1>
-          <p>Hope you enjoyed working with us!</p>
+          <h1><em>Testify</em> Our Work</h1>
+          <p>Share Your Experience with Us!</p>
           <section>
             <p>QUESTIONS</p>
             <ul>
-              <li>Who are you / what are you working on?</li>
-              <li>How has our product helped you?</li>
-              <li>What is the best thing about our project?</li>
+              <li>Tell us about yourself and your work.</li>
+              <li>How has our product impacted your work?</li>
+              <li>What do you appreciate most about our product?</li>
             </ul>
           </section>
         </section>
