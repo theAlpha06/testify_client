@@ -4,6 +4,10 @@ import React from "react";
 import type { FormProps } from "antd";
 import { Button, Checkbox, Form, Input } from "antd";
 import useNotify from "@/hooks/useNotification";
+import getName from "@/getUser";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import useStore from "@/store/user";
 
 interface FieldType {
   username: string;
@@ -13,20 +17,39 @@ interface FieldType {
 
 const SignIn: React.FC = (): JSX.Element => {
   const { notify, contextHolder } = useNotify();
+  const [form] = Form.useForm();
+  const { login } = useStore();
+  const router = useRouter();
 
   const handleNotify = (
     placement: "topLeft" | "topRight" | "bottomLeft" | "bottomRight"
   ) => {
     notify({
-      message: `Notification ${placement}`,
-      description: "This is a custom notification",
+      message: `Logged In!`,
+      description: "Redirecting...",
       placement,
     });
   };
 
-  const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-    console.log("success", values);
-    handleNotify("topRight");
+  const onFinish: FormProps<FieldType>["onFinish"] = async (values) => {
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/auth/login`,
+        {
+          username: "Biswadeep2",
+          password: "biswa123123",
+        }
+      );
+      const user = getName(response?.data?.access_token);
+      login(user.username);
+      handleNotify("topRight");
+      form.resetFields();
+      setTimeout(() => {
+        router.push("/dashboard");
+      }, 2000);
+    } catch (error) {
+      console.error("Axios Error:", error);
+    }
   };
 
   const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (
@@ -40,6 +63,7 @@ const SignIn: React.FC = (): JSX.Element => {
       {contextHolder}
       <Form
         name="basic"
+        form={form}
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 16 }}
         style={{ maxWidth: 600 }}

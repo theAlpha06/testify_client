@@ -35,11 +35,7 @@ const SignUp: React.FC = (): JSX.Element => {
         email: values.email,
         password: values.password,
       });
-      form.setFieldsValue({
-        username: "",
-        email: "",
-        password: "",
-      });
+      form.resetFields();
       handleNotify("topRight");
       setTimeout(() => {
         router.push("/signin");

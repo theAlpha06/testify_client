@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Flex, Switch, Space } from "antd";
+import useStore from "@/store/user";
 import styled from "styled-components";
 import ClipboardJS from "clipboard";
 
@@ -46,7 +47,8 @@ const ProfileContainer = styled.div`
 
 const Dashboard: React.FC = (): JSX.Element => {
   const [theme, setTheme] = useState("dark");
-
+  const { username } = useStore();
+  
   const toggleTheme = (checked: boolean) => {
     const newTheme = checked ? "dark" : "light";
     setTheme(newTheme);
@@ -78,7 +80,7 @@ const Dashboard: React.FC = (): JSX.Element => {
     initClipboard();
   }, []);
 
-  const iframeCode = `<iframe height="100%" frameBorder="0" scrolling="no" src="${process.env.NEXT_PUBLIC_TESTIMONIAL_URL}/testing?theme=${theme}" width="100%"></iframe>`;
+  const iframeCode = `<iframe height="100%" frameBorder="0" scrolling="no" src="${process.env.NEXT_PUBLIC_TESTIMONIAL_URL}/${username}?theme=${theme}" width="100%"></iframe>`;
 
   return (
     <DashboardContainer>
@@ -98,11 +100,11 @@ const Dashboard: React.FC = (): JSX.Element => {
             className="copy-link"
             onClick={() =>
               handleCopyToClipboard(
-                `${process.env.NEXT_PUBLIC_BASE_URL}/thealpha06`
+                `${process.env.NEXT_PUBLIC_BASE_URL}/${username}`
               )
             }
           >
-            {`${process.env.NEXT_PUBLIC_BASE_URL}/thealpha06`}
+            {`${process.env.NEXT_PUBLIC_BASE_URL}/${username}`}
           </LinkContainer>
         </ProfileContainer>
         <Space direction="vertical" style={{ marginTop: "2rem" }}>
@@ -116,7 +118,7 @@ const Dashboard: React.FC = (): JSX.Element => {
       </LinkWrapper>
       <FrameWrapper>
         <FrameContainer
-          src={`${process.env.NEXT_PUBLIC_TESTIMONIAL_URL}/testing?theme=${theme}`}
+          src={`${process.env.NEXT_PUBLIC_TESTIMONIAL_URL}/${username}?theme=${theme}`}
         />
       </FrameWrapper>
     </DashboardContainer>
