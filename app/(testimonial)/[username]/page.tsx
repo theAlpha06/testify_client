@@ -7,6 +7,7 @@ import useNotify from "@/hooks/useNotification";
 import { Button, Flex, Form, Input } from "antd";
 import axios from "axios";
 import { useParams } from "next/navigation";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
 interface FieldType {
   username: string;
@@ -171,4 +172,4 @@ const Testimonial: React.FC = (): JSX.Element => {
   );
 };
 
-export default Testimonial;
+export default ProtectedRoute(Testimonial);

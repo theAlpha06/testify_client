@@ -5,6 +5,7 @@ import { Flex, Switch, Space } from "antd";
 import useStore from "@/store/user";
 import styled from "styled-components";
 import ClipboardJS from "clipboard";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
 const DashboardContainer = styled(Flex)`
   height: 100%;
@@ -125,4 +126,4 @@ const Dashboard: React.FC = (): JSX.Element => {
   );
 };
 
-export default Dashboard;
+export default ProtectedRoute(Dashboard);
